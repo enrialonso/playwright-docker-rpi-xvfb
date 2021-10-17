@@ -18,7 +18,7 @@ RUN apt-get install -y --no-install-recommends \
 
 # (Optional) Install XVFB if there's a need to run browsers in headful mode
 RUN apt-get install -y --no-install-recommends xvfb
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y chromium-browser wget
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y chromium wget
 
 RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 ENV NODE_VERSION=12.20.1
