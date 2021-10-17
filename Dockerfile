@@ -18,7 +18,7 @@ RUN apt-get install -y --no-install-recommends \
 
 # (Optional) Install XVFB if there's a need to run browsers in headful mode
 RUN apt-get install -y --no-install-recommends xvfb
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y wget
+RUN apt-get install -y wget
 
 RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 ENV NODE_VERSION=12.20.1
@@ -35,7 +35,7 @@ RUN pip install playwright-1.15.3-py3-none-any.whl
 RUN rm /usr/local/lib/python3.8/dist-packages/playwright/driver/node && \
     ln -s /root/.nvm/versions/node/v12.20.1/bin/node /usr/local/lib/python3.8/dist-packages/playwright/driver/node
 
-RUN playwright install-deps
+RUN DEBIAN_FRONTEND="noninteractive" playwright install-deps
 RUN playwright install chromium
 
 ## Source dir for our scripts
