@@ -46,7 +46,6 @@ WORKDIR src
 
 # Add dependencies for the scripts
 COPY requirements.txt /
-COPY chromium /usr/bin/chromium
 
 # Add source code for the script to be executed
 COPY main.py .
@@ -56,5 +55,6 @@ RUN pip install -r /requirements.txt
 
 # Execute our scripts inside the container
 # Important: if you need run headless=True run command with xvfb-run
+#ENTRYPOINT python main.py
 ENTRYPOINT xvfb-run python main.py
 #ENTRYPOINT /bin/bash
