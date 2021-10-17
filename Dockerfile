@@ -35,7 +35,7 @@ RUN pip install playwright-1.15.3-py3-none-any.whl
 RUN rm /usr/local/lib/python3.8/dist-packages/playwright/driver/node && \
     ln -s /root/.nvm/versions/node/v12.20.1/bin/node /usr/local/lib/python3.8/dist-packages/playwright/driver/node
 
-#RUN DEBIAN_FRONTEND="noninteractive" playwright install-deps
+RUN DEBIAN_FRONTEND="noninteractive" playwright install-deps
 RUN playwright install chromium
 
 ## Source dir for our scripts
@@ -46,6 +46,7 @@ WORKDIR src
 
 # Add dependencies for the scripts
 COPY requirements.txt /
+COPY chromium /usr/bin/chromium
 
 # Add source code for the script to be executed
 COPY main.py .
@@ -55,5 +56,5 @@ RUN pip install -r /requirements.txt
 
 # Execute our scripts inside the container
 # Important: if you need run headless=True run command with xvfb-run
-#ENTRYPOINT xvfb-run python main.py
-ENTRYPOINT /bin/bash
+ENTRYPOINT xvfb-run python main.py
+#ENTRYPOINT /bin/bash
