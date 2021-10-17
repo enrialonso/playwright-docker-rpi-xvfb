@@ -55,4 +55,5 @@ RUN pip install -r /requirements.txt
 
 # Execute our scripts inside the container
 # Important: if you need run headless=True run command with xvfb-run
-ENTRYPOINT xvfb-run python main.py
+#ENTRYPOINT xvfb-run python main.py
+ENTRYPOINT /bin/bash
